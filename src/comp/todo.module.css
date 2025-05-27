@@ -1,0 +1,54 @@
+.cont{
+    background-color: rgb(221, 238, 240);
+}
+.main{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.todo{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: space-between;
+    
+}
+.input_box{
+    border: 2px solid green;
+    padding: 5px 10px 5px 10px;
+    outline: none;
+    border-bottom-left-radius: 6px;
+    margin-bottom: 10px;
+    
+}
+
+.btn{
+    border: none;
+    background-color: green;
+    color: white;
+    padding: 6.6px;
+    border-top-right-radius: 6px;
+
+}
+.todo ul{
+    padding:5px 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.form{
+    text-align: center;
+}
+.btn_clear{
+    border:none;
+    background-color: rgb(244, 101, 104);
+    margin: 5px auto 15px;
+    width: 80%;
+    font-weight: 700;
+    color: white;
+    padding: 6px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    
+}

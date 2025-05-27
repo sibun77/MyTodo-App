@@ -1,0 +1,40 @@
+.task_container{
+    border: 2px solid rgb(177, 110, 110);
+    border-radius: 8px;
+    max-width: 400px;
+    padding: 20px;
+    justify-content: space-between;
+    margin: 10px;
+    display: flex;
+    text-align: center;
+
+}
+.task_heading{
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(177, 110, 110);
+    font-weight: bold;
+    padding-right:30px ;
+}
+.task_complete{
+    background-color: rgb(177, 110, 110);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    
+}
+
+@media (min-width: 450px){
+    .task_container{
+        width: 400px;
+    }
+}
