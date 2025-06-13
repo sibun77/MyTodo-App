@@ -6,15 +6,15 @@ import Task from './task';
 
 const Todo = () => {
   const [task, setTask] = useState("");
-  const [complete,setComplete]=useState("");
-  const [remaining,setRemaining]=useState("");
-  const [total,setTotal]=useState("");
+  const [complete, setComplete] = useState("");
+  const [remaining, setRemaining] = useState("");
+  const [total, setTotal] = useState("");
   const todoData = JSON.parse(localStorage.getItem("todo_items")) || [
     { todoTask: "Download MyTodo", complete: false },
   ]
 
-  const darkMode=useRef();
-  const darkModeIcon=useRef();
+  const darkMode = useRef();
+  const darkModeIcon = useRef();
 
   const [alltodo, setAllTodo] = useState(todoData);
 
@@ -43,10 +43,10 @@ const Todo = () => {
     copyOfAllTodo[id].complete = !copyOfAllTodo[id].complete;
     setAllTodo(copyOfAllTodo);
   }
-function handleClearAll(){
-  setAllTodo([]);
-  toast.error("Task Cleared")
-}
+  function handleClearAll() {
+    setAllTodo([]);
+    toast.error("Task Cleared")
+  }
   function handleDelete(id) {
     const copyOfAllTodo = [...alltodo];
     const deletedValue = copyOfAllTodo.filter((value, index) => {
@@ -60,12 +60,17 @@ function handleClearAll(){
     const copyOfAllTodo = [...alltodo];
     let oldTask = copyOfAllTodo[id].todoTask;
     let newTask = prompt(`Update Task: ${oldTask}`, oldTask)
-    const newObj = { todoTask: newTask, complete: false }
-    copyOfAllTodo.splice(id, 1, newObj)
-    setAllTodo(copyOfAllTodo);
-    toast.error("Task Updated")
+    if (newTask) {
+      const newObj = { todoTask: newTask, complete: false }
+      copyOfAllTodo.splice(id, 1, newObj)
+      setAllTodo(copyOfAllTodo);
+      toast.success("Task Updated")
+    }
+    else{
+      toast.error("Can't Update")
+    }
   }
-    useEffect(() => {
+  useEffect(() => {
     const copyOfAllTodo = [...alltodo];
     const completeTasks = copyOfAllTodo.filter((value, index) => {
       return value.complete;
@@ -80,33 +85,33 @@ function handleClearAll(){
     })
     setTotal(totalTasks.length);
 
-    localStorage.setItem("todo_items",JSON.stringify(copyOfAllTodo));
-  },[alltodo]
+    localStorage.setItem("todo_items", JSON.stringify(copyOfAllTodo));
+  }, [alltodo]
   )
 
-  function handleDarkmode(){
-    const bgColor=darkMode.current.style.backgroundColor;
-    if(bgColor==''||bgColor=="white"){
-      darkMode.current.style.backgroundColor="black";
-      darkMode.current.style.color="white";
-      darkModeIcon.current.className="bi bi-toggle-on"
+  function handleDarkmode() {
+    const bgColor = darkMode.current.style.backgroundColor;
+    if (bgColor == '' || bgColor == "white") {
+      darkMode.current.style.backgroundColor = "black";
+      darkMode.current.style.color = "white";
+      darkModeIcon.current.className = "bi bi-toggle-on"
     }
-    else{
-      darkMode.current.style.backgroundColor="";
-      darkMode.current.style.color="";
-      darkModeIcon.current.className="bi bi-toggle-off"
+    else {
+      darkMode.current.style.backgroundColor = "";
+      darkMode.current.style.color = "";
+      darkModeIcon.current.className = "bi bi-toggle-off"
     }
   }
 
   return (
     <div ref={darkMode} className={TodoCss.cont}>
-      
+
       <div className={TodoCss.main}>
         <div className={TodoCss.todo} >
           <h1 className='text-center d-flex justify-content-around align-items-center '>Todo Application
             <i className="bi bi-toggle-off" ref={darkModeIcon} onClick={handleDarkmode}></i>
           </h1>
-          <Task ctask={complete} rtask={remaining} ttask={total}/>
+          <Task ctask={complete} rtask={remaining} ttask={total} />
           <form action="" onSubmit={handleForm} className={TodoCss.form} >
             <input
               type="text"
@@ -145,7 +150,7 @@ function handleClearAll(){
             )
             )}
           </ul>
-            <button className={TodoCss.btn_clear} onClick={handleClearAll}>Clear Task</button>
+          <button className={TodoCss.btn_clear} onClick={handleClearAll}>Clear Task</button>
         </div>
       </div>
     </div>
